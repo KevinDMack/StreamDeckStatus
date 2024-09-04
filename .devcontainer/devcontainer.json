@@ -21,7 +21,8 @@
         },
 	"runArgs": [
         "-v", "${env:SSH_AUTH_SOCK}:/ssh-agent",
-        "-e", "SSH_AUTH_SOCK=/ssh-agent"
+        "-e", "SSH_AUTH_SOCK=/ssh-agent",
+		"-v", "${env:HOME}/.ssh:/root/.ssh"  // Mount the ~/.ssh directory
     ],
     "remoteEnv": {
         "SSH_AUTH_SOCK": "/ssh-agent"
