@@ -12,19 +12,32 @@
 
 	// 👇 Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "",
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
+	],
 
 	// 👇 Configure tool-specific properties.
 	"customizations": {
         "vscode": {
-            "extensions":["ms-python.python", "njpwerner.autodocstring"]
-            }
+            "extensions": [
+				"ms-python.python", "njpwerner.autodocstring",
+				"ms-vscode-remote.remote-containers",
+        		"ms-azuretools.vscode-docker"
+			]
+            },
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash"
+			}
         },
 	"runArgs": [
         "-v", "${env:SSH_AUTH_SOCK}:/ssh-agent",
         "-e", "SSH_AUTH_SOCK=/ssh-agent",
-		"-v", "${env:HOME}/.ssh:/root/.ssh"  // Mount the ~/.ssh directory
+		"-v", "${env:HOME}/.ssh:/root/.ssh",  // Mount the ~/.ssh directory
+		"-v", "/var/run/docker.sock:/var/run/docker.sock",
+		"--add-host=host.docker.internal:host-gateway"  // Add the host.docker.internal DNS name
     ],
     "remoteEnv": {
         "SSH_AUTH_SOCK": "/ssh-agent"
-    }
+    },
+	"postCreateCommand": "docker --version"
 }

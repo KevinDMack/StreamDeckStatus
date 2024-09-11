@@ -4,7 +4,7 @@ This application is designed to run in a container and be able to be to get / up
 # Pre-requisites:
 The following will run to install the requirements:
 ```bash
-pip install -r requirements.txt
+pip install -r ./app/requirements.txt
 ```
 To confirm run the following:
 ```bash
@@ -14,7 +14,7 @@ pip list
 # Running in the devcontainer:
 The following command will run the app in the devcontainer:
 ```bash
-python3 ./status-api.py 
+python3 ./app/status-api.py 
 ```
 
 This command will execute a post to create a status message:
