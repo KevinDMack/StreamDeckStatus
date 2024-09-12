@@ -1,0 +1,1 @@
+docker build -f ./Dockerfile.app -t kemack/status-api:latest .
